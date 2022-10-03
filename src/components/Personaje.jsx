@@ -1,33 +1,39 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { UnicoPokemon, Title } from "./Funciones";
+import { Title } from "./Funciones";
 import { Top } from "./Top";
 import { Footer } from "./Footer";
 import { Loading } from "./Loading";
 import { useNavigate } from 'react-router-dom'
-
+import { useSelector } from "react-redux/es/exports";
+import { useDispatch } from "react-redux/es/exports";
+import { Pokeperfil } from "../actions/Pokeperfil";
 
 const Personaje =()=>{
     
     const params = useParams()
-    const  [persona, setPersona] = useState(null)
-    const  [image, setImage] = useState(null)
-    const  [segtype, setType2] = useState(null)
-    const  [type, setType] = useState(null)
-    const  [pokedescripcion, setDescripcion] = useState(null)
-    const [abilitiesdes,setAbilitiesdes]=useState(null)
-    const [id, setId]=useState(null)
-    const [weight, setWeight]=useState(null)
-    const [height, setHeight]=useState(null)
+
+    const persona = useSelector(Store => Store.PerfilReducer.persona)
+    const image = useSelector(Store => Store.PerfilReducer.image)
+    const segtype = useSelector(Store => Store.PerfilReducer.segtype)
+    const type = useSelector(Store => Store.PerfilReducer.type)
+    const pokedescripcion = useSelector(Store => Store.PerfilReducer.pokedescripcion)
+    const abilitiesdes = useSelector(Store => Store.PerfilReducer.abilitiesdes)
+    const id = useSelector(Store => Store.PerfilReducer.id)
+    const weight = useSelector(Store => Store.PerfilReducer.weight)
+    const height = useSelector(Store => Store.PerfilReducer.height)
 
     const Navigate = useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(()=>{
-        UnicoPokemon(params.name, setPersona, setImage, setType2, setType,setDescripcion,setAbilitiesdes,setId,setWeight,setHeight);
+        dispatch(Pokeperfil(params.name));
         window.scrollTo(0, 0)
     },[params.name])
+
     //console.log(params)
 
+    // console.log(Store.getState())
     const definir =()=>{
         switch(abilitiesdes.length){
             case 1:

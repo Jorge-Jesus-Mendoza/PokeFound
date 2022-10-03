@@ -1,35 +1,45 @@
-import React, {useState,useEffect} from "react";
-import { Todoslospokemon, MainTitle } from "./Funciones";
-import {Link} from 'react-router-dom'
+import React, {useEffect} from "react";
+import { MainTitle } from "./Funciones";
 import Card from "./Card";
 import { Top } from "./Top";
-import {Loading} from "./Loading"
+import {Loading} from "./Loading";
 import { Footer } from "./Footer";
 import ReactPaginate from "react-paginate";
+import { Pokelista } from "../actions/Pokelista";
+import { useSelector } from "react-redux/es/exports";
+import { useDispatch } from "react-redux/es/exports";
+import { Listaurl } from "../actions/Listaurl";
+import { Setselecter } from "../actions/Setselecter";
+
 
 const Inicio =()=>{
 
-    const [imgs, setImgs]=useState(null)
-    const [next,setNext]=useState(null)
-    const [previous,setPrevious]=useState(null)
-    const [pagenumber, setPagenumber]=useState(0)
-    const [url, setUrl] = useState (`https://pokeapi.co/api/v2/pokemon/?offset=${pagenumber}`)
-    const [totalpokemon, setTotalpokemon] = useState(null) 
+    var prueba = useSelector(Store => Store.Asignador_data.url)
+    const pokemones = useSelector(Store => Store.Asignador_data.imgs)
+    const totalpokemon = useSelector(Store => Store.Asignador_data.totalpokemon)
+    const dispatch = useDispatch()
     let pokemonperpage = 20
-    
-    
     
     // ?limit=2000 ?offset=20
     
 
     useEffect(()=>{
-        Todoslospokemon(url,setImgs,setNext,setPrevious,setTotalpokemon)
-    },[url])
+        
+        dispatch(Pokelista(prueba));
+        
+    },[useSelector(Store => Store.Asignador_data.url)])
+
+    //console.log(Store.getState())
+    //console.log(pokemones)
+    
 
     const handlepageclick =(data)=>{
         let target = data.selected + 1
         let inicio = target * 20 - 20
-        setUrl(`https://pokeapi.co/api/v2/pokemon/?offset=${inicio}`)
+        dispatch(Listaurl(inicio))
+        dispatch(Setselecter(data.selected))
+        console.log(Setselecter(data.selected))
+        
     }
 
 
@@ -47,10 +57,10 @@ const Inicio =()=>{
                 </div> */}
 
                 <div className="contiene">
-                    {imgs != null ? (
-
+                    {pokemones != null ? (
+                        
                         <div className="grid-template">
-                            {imgs.map(pokemon=>(
+                            {pokemones.map(pokemon=>(
 
                                 <Card
                                     key={pokemon.name}
@@ -92,6 +102,8 @@ const Inicio =()=>{
                     nextLinkClassName={"page-link"}
                     breakClassName={"page-item"}
                     breakLinkClassName={"page-link"}
+                    initialPage={useSelector(Store => Store.Asignador_data.selected)}
+                    
                 />
                 </div>
                 
@@ -106,5 +118,10 @@ const Inicio =()=>{
 
     )
 }
-
-export default Inicio
+/* const mapStateToProps = (RootReducers) => {
+        return RootReducers.Asignador_data;
+    };
+     
+export default connect(mapStateToProps, Pokelista)(Inicio);
+  */
+export default Inicio;

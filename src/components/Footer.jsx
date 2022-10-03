@@ -33,7 +33,7 @@ export const Footer = () => {
               <a href="https://www.upwork.com/freelancers/~017f4bd8d5575ded1a" target="_blank"><i><img src={Icon} className="fab fa-google-plus-g icon imagen" ></img></i></a></li>
 
             <li>
-              <a href="https://github.com/Jorge-Jesus-Mendoza" target="_blank"><FontAwesomeIcon icon={faTwitter} className="fab fa-twitter icon"/></a></li>
+              <a href="https://twitter.com/MendozaArraiz" target="_blank"><FontAwesomeIcon icon={faTwitter} className="fab fa-twitter icon"/></a></li>
 
             
           </ul>
