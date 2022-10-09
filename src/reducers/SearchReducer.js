@@ -9,7 +9,9 @@ const SearchReducer =( state = Default_search, action)=>{
         }
 
         case "NO_SEARCH": 
-            return state;
+            return {
+                results:null
+            }
         
         default: return state;
     }

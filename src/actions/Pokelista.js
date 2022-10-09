@@ -13,24 +13,26 @@ export const Pokelista = (url) => async (dispatch, getState) =>{
  
     try{
 
-        const peticion = await axios.get(url)
-        let lista=[]
+        const peticion2 = await axios.get(url)
+
+        const test = await axios.get("http://localhost:5000/count/1")
+        const first = await axios.get("http://localhost:5000/results?_start=0&_end=20")
+
+        let prueba = {total: 1154}
+        //const text = await axios.put("http://localhost:5000/count/1",prueba)
+        /* 
+        console.log(test.data.total)
+        console.log(peticion2.data.results)
+        console.log(first.data) */
         
-        for (let index of peticion.data.results){
-            const resp = await axios.get(index.url)        
-            
-            if (resp.data.types.length > 1)     {
-                lista.push({name: resp.data.name , img: resp.data.sprites.front_default, type: resp.data.types[0].type.name, sectype: resp.data.types[1].type.name, id: resp.data.id, weight: resp.data.weight/10, height:resp.data.height/10})
-            }
-            else{
-                lista.push({name: resp.data.name , img: resp.data.sprites.front_default, type: resp.data.types[0].type.name, sectype: null, id: resp.data.id, weight: resp.data.weight/10, height:resp.data.height/10})
-            }   
-        }
+        
+        
+        
 
         dispatch({
             type: "LOAD_DATA",
-            payload: peticion.data,
-            payload2: lista,
+            payload: peticion2.data,
+            payload2: test.data.total,
         });
 
         
@@ -38,6 +40,7 @@ export const Pokelista = (url) => async (dispatch, getState) =>{
 
     } catch(error){
         console.log(error)
+        window.location.assign("/ErrorServer");
     }
 
     

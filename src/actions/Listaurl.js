@@ -1,15 +1,24 @@
 import axios from "axios";
 
-export const Listaurl = (data) => async (dispatch, getState) =>{
+export const Listaurl = (data, data2) => async (dispatch, getState) =>{
 
     dispatch({
         type: "LOADING",
     });
 
-    dispatch({
-        type: "UPLOAD_URL",
-        payload: `https://pokeapi.co/api/v2/pokemon/?offset=${data}`,
-    });
+    if(data2 == 0){
+        dispatch({
+            type: "UPLOAD_URL",
+            payload: `http://localhost:5000/results?_start=0&_end=20`,
+        });
+    }else{
+        dispatch({
+            type: "UPLOAD_URL",
+            payload: `http://localhost:5000/results?_start=${data}&_end=${data2}`,
+        });
+    }
+
+    
 
     
 }

@@ -1,10 +1,8 @@
 const Default_setdata = {
 
     imgs:null,
-    next:null,
-    previous:null,
-    pagenumber: 0,
-    url:`https://pokeapi.co/api/v2/pokemon/?offset=0`,
+    update: false,
+    url:`http://localhost:5000/results?_start=0&_limit=20`,
     selected: 0,
     totalpokemon: null
 }

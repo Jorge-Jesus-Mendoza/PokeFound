@@ -10,13 +10,16 @@ import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/exports";
 import { Listaurl } from "../actions/Listaurl";
 import { Setselecter } from "../actions/Setselecter";
+import { Alert } from "./Alert";
+import { DeletePokemon } from "../actions/DeletePokemon";
+import { Link } from "react-router-dom";
 
 
 const Inicio =()=>{
 
     var prueba = useSelector(Store => Store.Asignador_data.url)
-    const pokemones = useSelector(Store => Store.Asignador_data.imgs)
-    const totalpokemon = useSelector(Store => Store.Asignador_data.totalpokemon)
+    var pokemones = useSelector(Store => Store.Asignador_data.imgs)
+    var totalpokemon = useSelector(Store => Store.Asignador_data.totalpokemon)
     const dispatch = useDispatch()
     let pokemonperpage = 20
     
@@ -26,8 +29,9 @@ const Inicio =()=>{
     useEffect(()=>{
         
         dispatch(Pokelista(prueba));
+        window.scrollTo(0, 0)
         
-    },[useSelector(Store => Store.Asignador_data.url)])
+    },[useSelector(Store => Store.Asignador_data.url), useSelector(Store => Store.Asignador_data.totalpokemon), useSelector(Store => Store.Asignador_data.update)])
 
     //console.log(Store.getState())
     //console.log(pokemones)
@@ -36,9 +40,11 @@ const Inicio =()=>{
     const handlepageclick =(data)=>{
         let target = data.selected + 1
         let inicio = target * 20 - 20
-        dispatch(Listaurl(inicio))
+        let inicio2= inicio + 20
+        dispatch(Listaurl(inicio,inicio2))
         dispatch(Setselecter(data.selected))
-        console.log(Setselecter(data.selected))
+        
+        
         
     }
 
@@ -62,16 +68,31 @@ const Inicio =()=>{
                         <div className="grid-template">
                             {pokemones.map(pokemon=>(
 
-                                <Card
-                                    key={pokemon.name}
-                                    nombre={pokemon.name}
-                                    image={pokemon.img}
-                                    type={pokemon.type}  
-                                    sectype={pokemon.sectype}   
-                                    id={pokemon.id} 
-                                    weight={pokemon.weight}  
-                                    height={pokemon.height}           
-                                />
+                                //console.log(pokemon),
+                                <div>
+                                    <Card
+                                        key={pokemon.name}
+                                        nombre={pokemon.name}
+                                        image={pokemon.img}
+                                        type={pokemon.type}  
+                                        sectype={pokemon.sectype}   
+                                        id={pokemon.id} 
+                                        weight={pokemon.weight}  
+                                        height={pokemon.height }           
+                                    />
+                                    <div className="cartas" key={pokemon.id}>
+                                        <div>
+                                            <button className="btn btn-danger" onClick={()=>dispatch(DeletePokemon(pokemon.id))}>Delete</button>
+                                        </div>
+                                        
+                                        <div>
+                                            <Link to={`/edit/${(pokemon.id)}`}><button className="btn btn-primary">Edit</button></Link>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
                             
                             ))}
                         </div>

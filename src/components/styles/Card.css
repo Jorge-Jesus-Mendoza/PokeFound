@@ -550,6 +550,14 @@ path{
   font-size: 13px;
   
 }
+
+.stats2{
+  
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 9px;
+  
+}
 .centrado{
   display: grid;
   justify-content: center;
@@ -557,6 +565,11 @@ path{
 
 .stats-h { 
   min-width: 85px;
+  background: #5186bb;
+}
+
+.stats-m{
+  min-width: 50px;
   background: #5186bb;
 }
 
@@ -578,12 +591,29 @@ table {
   overflow: hidden;
 }
 
+.parrafo{
+  width: 400px;
+}
 
+.miniatura img{
 
+  width: 200px;
+  height: auto;
+}
 
-
-
-
+.append{
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.caracter{
+  width: 100px;
+}
+.cartas{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
 .sgrass{
   background:#63bb5b;
   color: #fff;
@@ -687,6 +717,19 @@ table {
 .moves{
   font-size: 10px;
   text-align: center;
+}
+
+.texto-preview{
+  text-align: center;
+}
+
+.error505{
+
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 .movimientos{
   display: grid;
@@ -796,7 +839,34 @@ table {
     border-right: 3px solid #645e0f;
     transform: translate(-100%, 50%);
   }
-  
+  .formulario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+  }
+  .acomodar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .activo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+  }
+  .tabla{
+    width: 200px;
+  }
+  .status{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* justify-content: space-between; */
+  }
   .nav a:after {
     content: '';
     left: 0;

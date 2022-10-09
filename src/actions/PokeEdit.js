@@ -1,9 +1,9 @@
 import axios from "axios";
 
 
-export const Pokeperfil = (name) => async (dispatch, getState) =>{
+export const PokeEdit = (name) => async (dispatch, getState) =>{
     dispatch({
-        type: "LOADING_PERFIL",
+        type: "RESET_NEW_DATA",
     });
 
     try{
@@ -11,7 +11,7 @@ export const Pokeperfil = (name) => async (dispatch, getState) =>{
         
         dispatch({
             type: "LOAD_DATA_PERFIL",
-            payload: peticion.data[0],
+            payload: peticion.data,
             
         });
 

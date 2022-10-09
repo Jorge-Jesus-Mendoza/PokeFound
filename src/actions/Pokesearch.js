@@ -13,20 +13,15 @@ export const Pokesearch = (search) => async (dispatch, getState) =>{
     
  
     try{
-        const peticion = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=2000')
-        const filtrar = peticion.data.results.filter(x=>x.name.includes(search))
-        let lista=[]
+        
+        const first = await axios.get("http://localhost:5000/results")
+        const filtrar2 = first.data.filter(y=>y.name.includes(search))
+       
 
         
-        for (let index of filtrar){
-            const resp = await axios.get(index.url)
-
-            lista.push({name: resp.data.name , img: resp.data.sprites.front_default, type: resp.data.types[0].type.name})
-            
-        }
         dispatch({
             type: "SEARCH",
-            payload: lista,
+            payload: filtrar2,
         });
 
         

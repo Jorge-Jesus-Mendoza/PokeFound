@@ -23,11 +23,13 @@ const Personaje =()=>{
     const weight = useSelector(Store => Store.PerfilReducer.weight)
     const height = useSelector(Store => Store.PerfilReducer.height)
 
+    
+
     const Navigate = useNavigate()
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(Pokeperfil(params.name));
+        dispatch(Pokeperfil(`http://localhost:5000/results?name=${params.name}`));
         window.scrollTo(0, 0)
     },[params.name])
 
@@ -38,7 +40,7 @@ const Personaje =()=>{
         switch(abilitiesdes.length){
             case 1:
                 return(
-                    <div className="Habilidades-main">
+                    <div className="Habilidades-main my-5">
                         <div className="Abilities"> <b>Abilities</b> </div>
                         <div className="habilidades3">
                             {abilitiesdes.map(abildes => (
@@ -60,7 +62,7 @@ const Personaje =()=>{
 
             case 2:
                 return(
-                    <div className="Habilidades-main">
+                    <div className="Habilidades-main my-5">
                         <div className="Abilities"> <b>Abilities</b> </div>
                         <div className="habilidades">
                             {abilitiesdes.map(abildes => (
@@ -81,7 +83,7 @@ const Personaje =()=>{
 
             case 3:
                 return(
-                    <div className="Habilidades-main">
+                    <div className="Habilidades-main my-5">
                         <div className="Abilities"> <b>Abilities</b> </div>
                         <div className="habilidades2">
                             {abilitiesdes.map(abildes => (
@@ -124,7 +126,7 @@ const Personaje =()=>{
                             <div className="pokeinfo">
                                 <h2 className="fuente">{persona.name}</h2>
                                 {/* {console.log(persona.name.length)} */}
-                                <div>
+                                <div className=" my-2">
                                     <img src={image} alt="This Pokemon doesn't have an official art"></img>
                                 </div>
                                 
@@ -154,7 +156,7 @@ const Personaje =()=>{
                                 </div>
                                 <div>
                                     <div>
-                                        <p className="fuente"> Pokedex ID: {id} <br/>Height:{height}m<br/> Weight:{weight}Kg</p>
+                                        <p className="fuente"> Pokedex ID: {id} <br/>Height:{height * 10}m<br/> Weight:{weight * 10}Kg</p>
                                     </div>
                                     
                                 </div>
@@ -189,28 +191,14 @@ const Personaje =()=>{
                                         </tbody>
                                     </table>
 
-                                    <br />
-                         
                                     {definir()}
                                         
-                                    <br />
-
-                                    <div>
-                                        <div className="mover movimientos-bien-arriba"><b>Moves</b></div>
-                                        <div className="movimientos ajustar movimientos-bien-abajo">
-                                            {persona.moves.map(movimiento =>(
-                                                    <div className="movimiento-ajustar" key={movimiento.move.name}>
-                                                        <p className="texto">{movimiento.move.name}</p>
-                                                    </div>
-                                                ))}
-                                        </div>
-                                    </div> 
                                 </div>
                             </div>
                             
                             
                         </div>
-                        <div className="Nexr-Prev">
+                        {/* <div className="Nexr-Prev">
                             {persona.id !== 1 ? (
                                 <button className="btn btn-next btn-info" onClick={()=>{Navigate( `/pokemon/${persona.id -1}` )}}>Prev Pokemon</button>
                             ) : (<></>)}
@@ -218,7 +206,7 @@ const Personaje =()=>{
 
                             <button className="btn btn-next btn-info" onClick={()=>{Navigate( `/pokemon/${persona.id +1}` )}}>Next Pokemon</button>
                             
-                        </div>
+                        </div> */}
                     </div>
 
                 ) : (<Loading/>)}

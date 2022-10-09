@@ -5,15 +5,21 @@ const Asignador_data =( state = Default_setdata, action)=>{
         case "LOAD_DATA": return{
             
             ...state,
-            imgs: action.payload2,
-            next: action.payload.next,
-            previous: action.payload.previous,
-            totalpokemon: action.payload.count
+            imgs: action.payload,
+            totalpokemon: action.payload2
         }
+        
         case "UPLOAD_URL": return{
             
             ...state,
             url: action.payload
+            
+        }
+
+        case "UPDATE_INDIVIDUAL_POKEMON": return{
+            
+            ...state,
+            update: action.payload
             
         }
 
@@ -24,8 +30,20 @@ const Asignador_data =( state = Default_setdata, action)=>{
             
         }
 
+        case "MODIFY_POKEMON_DATA": return{
+            
+            ...state,
+            totalpokemon: action.payload
+            
+        }
+
         case "LOADING": 
-            return state;
+            return{
+                ...state,
+                imgs:null,
+                
+                
+            }
 
 
         default: return state;
