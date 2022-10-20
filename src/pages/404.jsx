@@ -1,7 +1,7 @@
 import React from 'react'
 import NotImage from '../images/deaw1uz-42761132-908b-4ded-8c3d-5ad1b20fe9e4.png'
-import { Top } from './Top'
-import { Footer } from './Footer'
+import { Top } from '../components/Top'
+import { Footer } from '../components/Footer'
 
 export const Notfound = () => {
   return (

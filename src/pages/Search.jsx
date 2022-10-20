@@ -1,11 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react';
-import { Top } from './Top';
-import { Footer } from './Footer';
+import { Top } from '../components/Top';
+import { Footer } from '../components/Footer';
 import { useParams } from "react-router-dom";
-import { Busqueda } from './Busqueda';
-import { Loading } from './Loading';
-import { Title } from './Funciones';
+import { Results } from '../components/Results';
+import { Loading } from '../components/Loading';
+import { Title } from '../components/Functions';
 import { Pokesearch } from '../actions/Pokesearch';
 import { useDispatch } from "react-redux/es/exports";
 import { useSelector } from "react-redux/es/exports";
@@ -15,7 +15,6 @@ import { useSelector } from "react-redux/es/exports";
 
 export const Buscar = () => {
 
-    //const [imgs, setImgs]=useState(null)
     const results = useSelector(Store => Store.SearchReducer.results)
     const dispatch = useDispatch()
     
@@ -27,9 +26,6 @@ export const Buscar = () => {
         window.scrollTo(0, 0)
     },[params.search])
 
-    /* if (imgs != null){
-      console.log(imgs.length)
-    } */
     Title('Search | ', params.search)
   return (
 
@@ -39,8 +35,8 @@ export const Buscar = () => {
         {results != null ? (
           
           results.map(pokemon =>(
-            <Busqueda
-              key={pokemon.name}
+            <Results
+              key={pokemon.id}
               name={pokemon.name}
               image={pokemon.img}
               type={pokemon.type}

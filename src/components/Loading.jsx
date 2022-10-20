@@ -5,9 +5,6 @@ export const Loading = () => {
   return (
 
     <div className='contenedor'>
-      {/* <div className="loader">Loading...</div> */}
-      
-
       
       <div className='pokeball'></div>
       <br />

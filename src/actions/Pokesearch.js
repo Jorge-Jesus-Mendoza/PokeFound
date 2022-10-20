@@ -1,4 +1,6 @@
 import axios from "axios";
+import Url from "../config/Url";
+
 
 
 export const Pokesearch = (search) => async (dispatch, getState) =>{
@@ -7,29 +9,18 @@ export const Pokesearch = (search) => async (dispatch, getState) =>{
         type: "NO_SEARCH",
     });
 
-    //const prueba = getState()
-
-    // console.log(prueba)
-    
- 
     try{
         
-        const first = await axios.get("http://localhost:5000/results")
-        const filtrar2 = first.data.filter(y=>y.name.includes(search))
+        const alldata = await axios.get(Url)
+        const list = alldata.data.filter(y=>y.name.includes(search))
        
-
-        
         dispatch({
             type: "SEARCH",
-            payload: filtrar2,
+            payload: list,
         });
-
-        
-        
 
     } catch(error){
         console.log(error)
     }
 
-    
 }

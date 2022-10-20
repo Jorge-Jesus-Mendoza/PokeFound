@@ -2,27 +2,27 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import "./styles/Card.css"
 
-const Card = ({nombre,image, type, sectype, id, weight, height}) =>{
+const Card = ({name,image, type, sectype, id, weight, height}) =>{
     return (
 
         <div>
             
             <div className={`card ${type}`}>
-                <Link to={`/pokemon/${nombre}`}>
+                <Link to={`/pokemon/${name}`}>
 
                     <div className="id"><p >#{id}</p></div>
                     <div >
                         <img className="img otra-img" src={image}></img>
                     </div>
 
-                    {nombre.length < 13 ? (
+                    {name.length < 13 ? (
                         <div>
-                            <p className="fuente nombres">{nombre}</p>
+                            <p className="fuente nombres">{name}</p>
                         </div>
                     ):(
                         
                         <div>
-                            <p className="fuente nombres2">{nombre}</p>
+                            <p className="fuente nombres2">{name}</p>
                         </div>
                     )}
 

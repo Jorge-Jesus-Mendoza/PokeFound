@@ -1,10 +1,10 @@
 
 const Title =(context,title)=>{
-    let titulo
+    let head
 
-    titulo=title.charAt(0).toUpperCase() + title.slice(1)
+    head=title.charAt(0).toUpperCase() + title.slice(1)
     return(
-        document.title = context + titulo
+        document.title = context + head
     )
 }
 

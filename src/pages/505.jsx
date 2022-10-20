@@ -1,7 +1,7 @@
 import React from 'react'
 import NotServer from '../images/untitled-2-1485431563201_160w.jpg'
-import { Top } from './Top'
-import { Footer } from './Footer'
+import { Top } from '../components/Top'
+import { Footer } from '../components/Footer'
 
 export const ErrorServer = () => {
   return (

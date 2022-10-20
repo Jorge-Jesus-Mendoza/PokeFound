@@ -7,18 +7,11 @@ export const Setselecter = (data) => (dispatch, getState) =>{
         type: "LOADING",
     });
 
-    if (data>0){
-        let position = data
-        dispatch({
-            type: "SET_SELECTER",
-            payload: position,
-        });
-    }else{
-        let position = data
-        dispatch({
-            type: "SET_SELECTER",
-            payload: position,
-        });
-    }
-
+    
+    let position = data
+    dispatch({
+        type: "SET_SELECTER",
+        payload: position,
+    });
+    
 }

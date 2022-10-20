@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export const Busqueda = ({name,image, type}) => {
+export const Results = ({name,image, type}) => {
   return (
   
     

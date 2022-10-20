@@ -1,13 +1,11 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import Inicio from './components/Inicio'
-import Personaje from './components/Personaje'
-import { Notfound } from './components/404'
-import { Buscar } from './components/Buscar'
-import { Loading } from './components/Loading'
-import { Home } from './pages/Home'
-import {New} from './components/New'
-import { EditPokemon } from './components/EditPokemon'
-import { ErrorServer } from './components/505'
+import Home from './pages/Home'
+import Pokemon from './pages/Pokemon'
+import { Notfound } from './pages/404'
+import { Buscar } from './pages/Search'
+import {New} from './pages/New'
+import { EditPokemon } from './pages/EditPokemon'
+import { ErrorServer } from './pages/505'
 
 
 const App = () =>{
@@ -15,11 +13,10 @@ const App = () =>{
         <Router>
     
             <Routes>
-                <Route exact path="/inicio" element={<Inicio/>}/>               
-                <Route exact path="/pokemon/:name" element={<Personaje/>}/>
+                <Route exact path="/home" element={<Home/>}/>               
+                <Route exact path="/pokemon/:name" element={<Pokemon/>}/>
                 <Route path="*" element={<Notfound/>}/>
-                <Route path="/notfound" element={<Notfound/>}/>
-                <Route path="/loading" element={<Loading/>}/>              
+                <Route path="/notfound" element={<Notfound/>}/>             
                 <Route path="/search/:search" element={<Buscar/>}/>
                 <Route path="/New" element={<New/>}/>
                 <Route path="/ErrorServer" element={<ErrorServer/>}/> 

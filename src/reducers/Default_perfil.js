@@ -1,10 +1,10 @@
 const Default_perfil = {
 
-    persona:null,
+    pokemon:null,
     image:null,
     segtype:null,
     type: null,
-    pokedescripcion: null,
+    pokedescription: null,
     abilitiesdes: null,
     id: null,
     weight: null,

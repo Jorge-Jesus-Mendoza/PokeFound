@@ -1,6 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from 'react-router-dom'
+import Count_pokemon from "../config/Count_pokemon"
+import Url from "../config/Url"
 
 
 export const NewPokemon = (form) => async (dispatch, getState) =>{
@@ -8,22 +9,17 @@ export const NewPokemon = (form) => async (dispatch, getState) =>{
     
  
     try{
-        const test = await axios.get("http://localhost:5000/count/1")
-        const first = await axios.post("http://localhost:5000/results", form)
+        const test = await axios.get(Count_pokemon)
+        const addPokemon = await axios.post(Url, form)
 
-        
-        
-        
-        
-        
-        if (first.status === 201) {
+        if (addPokemon.status === 201) {
             Swal.fire(
                 'Saved!',
                 `${form.name} has been added!`,
                 'success'
             )
-            let prueba = {total: test.data.total+1}
-            const text = await axios.put("http://localhost:5000/count/1",prueba)
+            let count = {total: test.data.total+1}
+            const text = await axios.put(Count_pokemon,count)
 
             dispatch({
                 type: "MODIFY_POKEMON_DATA",
@@ -36,13 +32,6 @@ export const NewPokemon = (form) => async (dispatch, getState) =>{
                 'error'
             )
         }
-
-
-
-        
-
-        
-        
 
     } catch(error){
         console.log(error)

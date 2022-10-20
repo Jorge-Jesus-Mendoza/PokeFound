@@ -1,20 +1,15 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from 'react-router-dom'
+import Url from "../config/Url"
 
 
-export const Changedata = (form, id, disparador) => async (dispatch, getState) =>{
+export const Changedata = (form, id, trigger) => async (dispatch, getState) =>{
 
- 
+  
     try{
-        const test = await axios.get("http://localhost:5000/count/1")
-        const first = await axios.put(`http://localhost:5000/results/${id}`, form)
 
-        
-        
-        
-        
-        
+        const first = await axios.put(`${Url}/${id}`, form)
+
         if (first.status === 200) {
             Swal.fire(
                 'Saved!',
@@ -25,7 +20,7 @@ export const Changedata = (form, id, disparador) => async (dispatch, getState) =
 
             dispatch({
                 type: "UPDATE_INDIVIDUAL_POKEMON",
-                payload: disparador,
+                payload: trigger,
             });
         }else {
             Swal.fire(
@@ -35,17 +30,8 @@ export const Changedata = (form, id, disparador) => async (dispatch, getState) =
             )
         }
 
-
-
-        
-
-        
-        
-
     } catch(error){
         console.log(error)
     }
-
-
     
 }
