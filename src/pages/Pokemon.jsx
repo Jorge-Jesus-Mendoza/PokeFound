@@ -13,6 +13,7 @@ import { Skills } from "../components/Skills";
 import { Pokeinfo } from "../components/Pokeinfo";
 import Button from '@mui/material/Button'
 import Url from "../config/Url"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Pokemon =()=>{
     
@@ -44,8 +45,8 @@ const Pokemon =()=>{
             <div className="container">
                 
 
-                <Button variant="outlined" color="primary" onClick={()=>{Navigate(-1)}}>
-                  Go back
+                <Button variant="outlined" color="primary" round onClick={()=>{Navigate(-1)}}>
+                    <ArrowBackIcon/>
                 </Button>
 
                 {pokemon != null ?(

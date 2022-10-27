@@ -1,7 +1,10 @@
 const Default_perfil = {
 
     pokemon:null,
+    name:null,
+    img:null,
     image:null,
+    stats:null,
     segtype:null,
     type: null,
     pokedescription: null,

@@ -5,6 +5,8 @@ const Default_setdata = {
     update: false,
     url:`${Url}?_start=0&_limit=20`,
     selected: 0,
-    totalpokemon: null
+    totalpokemon: null,
+    type: null,
+    filter: false
 }
 export default Default_setdata

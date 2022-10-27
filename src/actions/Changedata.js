@@ -11,17 +11,12 @@ export const Changedata = (form, id, trigger) => async (dispatch, getState) =>{
         const first = await axios.put(`${Url}/${id}`, form)
 
         if (first.status === 200) {
-            Swal.fire(
-                'Saved!',
-                `${form.name} has been updated!`,
-                'success'
-            )
             
-
             dispatch({
                 type: "UPDATE_INDIVIDUAL_POKEMON",
                 payload: trigger,
             });
+            
         }else {
             Swal.fire(
                 'Error!',

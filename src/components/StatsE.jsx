@@ -1,13 +1,11 @@
 import React from 'react'
 
-export const StatsS = ({stats}) => {
+export const StatsE = ({stats}) => {
   return (
     <div className="stats2 fuente">
         <div className="centrado">
             <table>
                 <tbody>
-
-                
                     <tr>
                         <th className="stats-m">Hp</th>
                         <th className="stats-m">Att</th>
@@ -17,15 +15,13 @@ export const StatsS = ({stats}) => {
                         <th className="stats-m">Speed</th>   
                     </tr>
                     <tr>
-                        <td className="stats-d">{stats[0].base_stat}</td>
-                        <td className="stats-d">{stats[1].base_stat}</td>
-                        <td className="stats-d">{stats[2].base_stat}</td>
-                        <td className="stats-d">{stats[3].base_stat}</td>
-                        <td className="stats-d">{stats[4].base_stat}</td>
-                        <td className="stats-d">{stats[5].base_stat}</td>
-                        
+                        <td className="stats-d">{stats.hp}</td>
+                        <td className="stats-d">{stats.attack}</td>
+                        <td className="stats-d">{stats.defense}</td>
+                        <td className="stats-d">{stats.s_attack}</td>
+                        <td className="stats-d">{stats.s_defense}</td>
+                        <td className="stats-d">{stats.speed}</td>
                     </tr>
-                
                 </tbody>
             </table>
 

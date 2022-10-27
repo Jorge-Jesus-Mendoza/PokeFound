@@ -37,6 +37,20 @@ const Asignador_data =( state = Default_setdata, action)=>{
             
         }
 
+        case "FILTER_POKEMON_LIST": return{
+            
+            ...state,
+            filter: action.payload
+            
+        }
+
+        case "SET_TYPE_TO_FILTER_THE_LIST": return{
+            
+            ...state,
+            type: action.payload
+            
+        }
+
         case "LOADING": 
             return{
                 ...state,

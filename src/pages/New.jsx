@@ -7,12 +7,12 @@ import { useDispatch } from 'react-redux';
 import { NewPokemon } from '../actions/NewPokemon';
 import { useNavigate } from 'react-router-dom';
 import {Title } from '../components/Functions';
-import { StatsS } from '../components/StatsS';
-import { Form } from '../components/Form';
+import { StatsE } from '../components/StatsE';
+import { Form2 } from '../components/Form2';
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 
@@ -22,6 +22,7 @@ export const New = () => {
 
 
         const [open, setOpen] = useState(false);
+        const [open2, setOpen2] = useState(false);
 
         const handleClick = () => {
             setOpen(true);
@@ -29,6 +30,14 @@ export const New = () => {
 
         const handleClose = (event, reason) => {
             setOpen(false);
+        };
+
+        const handleClick2 = () => {
+            setOpen2(true);
+        };
+
+        const handleClose2 = (event, reason) => {
+            setOpen2(false);
         };
 
         Title("PokeFound | ","New")
@@ -78,7 +87,7 @@ export const New = () => {
                     stats: [{base_stat: data.hp},{base_stat: data.attack},{base_stat: data.defense},{base_stat: data.s_attack},{base_stat: data.s_defense},{base_stat: data.speed}]
                 }
                 dispatch(NewPokemon(form))
-                navigate("/home")
+                handleClick2()
                 
                 console.log(form)
             }
@@ -92,21 +101,27 @@ export const New = () => {
 
                 <div className='container fuente'>
                     <Button variant="outlined" color="primary" onClick={()=>{navigate(-1)}}>
-                    Go back
+                        <ArrowBackIcon/>
                     </Button>
                     
 
 
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }} variant="filled">
-                        The pokemon cannot repeat its type!
-                    </Alert>
+                        <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }} variant="filled">
+                            The pokemon cannot repeat its type!
+                        </Alert>
+                    </Snackbar>
+
+                    <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+                        <Alert onClose={handleClose2} severity="success" sx={{ width: '100%' }} variant="filled">
+                            {data.name} has been succesfully added!
+                        </Alert>
                     </Snackbar>
                     
                     
                     <div className='append'>
 
-                        <Form
+                        <Form2
                             handleSubmit={handleSubmit}
                             handleChange={handleChange}
                             data={data}     
@@ -138,7 +153,7 @@ export const New = () => {
                                     </div>
                                 </div>
 
-                                <StatsS
+                                <StatsE
                                     stats={data}
                                 />
 

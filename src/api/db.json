@@ -1,7 +1,7 @@
 {
   "count": [
     {
-      "total": 1156,
+      "total": 1155,
       "id": 1
     }
   ],
@@ -9,72 +9,40 @@
     {
       "name": "bulbasaur",
       "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
       "type": "grass",
       "sectype": "poison",
-      "weight": 6.9,
-      "height": 0.7,
-      "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      "weight": "07",
+      "height": "1",
       "pokedescripcion": "While it is young, it uses the nutrients that are\nstored in the seed on its back in order to grow.",
       "abilitiesdes": [
         {
           "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
-          "lang": "en",
           "name": "overgrow"
         },
         {
           "effect": "This Pokémon's Speed is doubled during strong sunlight.\n\nThis bonus does not count as a stat modifier.",
-          "lang": "en",
           "name": "chlorophyll"
         }
       ],
       "stats": [
         {
-          "base_stat": 45,
-          "effort": 0,
-          "stat": {
-            "name": "hp",
-            "url": "https://pokeapi.co/api/v2/stat/1/"
-          }
+          "base_stat": 45
         },
         {
-          "base_stat": 49,
-          "effort": 0,
-          "stat": {
-            "name": "attack",
-            "url": "https://pokeapi.co/api/v2/stat/2/"
-          }
+          "base_stat": 49
         },
         {
-          "base_stat": 49,
-          "effort": 0,
-          "stat": {
-            "name": "defense",
-            "url": "https://pokeapi.co/api/v2/stat/3/"
-          }
+          "base_stat": 49
         },
         {
-          "base_stat": 65,
-          "effort": 1,
-          "stat": {
-            "name": "special-attack",
-            "url": "https://pokeapi.co/api/v2/stat/4/"
-          }
+          "base_stat": 65
         },
         {
-          "base_stat": 65,
-          "effort": 0,
-          "stat": {
-            "name": "special-defense",
-            "url": "https://pokeapi.co/api/v2/stat/5/"
-          }
+          "base_stat": 65
         },
         {
-          "base_stat": 45,
-          "effort": 0,
-          "stat": {
-            "name": "speed",
-            "url": "https://pokeapi.co/api/v2/stat/6/"
-          }
+          "base_stat": 45
         }
       ],
       "id": 1
@@ -84839,78 +84807,45 @@
     },
     {
       "name": "avalugg-hisui",
-      "img": null,
+      "img": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7c70c0d4-ae2b-441f-9ef3-87b372014ef9/df82ilh-81f4b26b-e9d6-46d9-9c54-1394d514b0ed.png/v1/fill/w_192,h_192,strp/avalugg_by_eduarpoken_df82ilh-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTkyIiwicGF0aCI6IlwvZlwvN2M3MGMwZDQtYWUyYi00NDFmLTllZjMtODdiMzcyMDE0ZWY5XC9kZjgyaWxoLTgxZjRiMjZiLWU5ZDYtNDZkOS05YzU0LTEzOTRkNTE0YjBlZC5wbmciLCJ3aWR0aCI6Ijw9MTkyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.d-ri-QEgfhV6hjOAqHZxqElG4NlZvqT6Tvks206k_lI",
+      "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png",
       "type": "ice",
       "sectype": "rock",
-      "weight": 262.4,
-      "height": 1.4,
-      "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png",
+      "weight": "262",
+      "height": "01",
       "pokedescripcion": "This Pokemon doesn't have a description yet",
       "abilitiesdes": [
         {
           "effect": "Strengthens biting moves to 1.5× their power.",
-          "lang": "en",
           "name": "strong-jaw"
         },
         {
           "effect": "This Pokémon heals for 1/16 of its maximum HP after each turn during hail, and it does not take hail damage regardless of type.",
-          "lang": "en",
           "name": "ice-body"
         },
         {
           "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP.  Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold.\n\nIf this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
-          "lang": "en",
           "name": "sturdy"
         }
       ],
       "stats": [
         {
-          "base_stat": 95,
-          "effort": 0,
-          "stat": {
-            "name": "hp",
-            "url": "https://pokeapi.co/api/v2/stat/1/"
-          }
+          "base_stat": 95
         },
         {
-          "base_stat": 127,
-          "effort": 0,
-          "stat": {
-            "name": "attack",
-            "url": "https://pokeapi.co/api/v2/stat/2/"
-          }
+          "base_stat": 127
         },
         {
-          "base_stat": 184,
-          "effort": 2,
-          "stat": {
-            "name": "defense",
-            "url": "https://pokeapi.co/api/v2/stat/3/"
-          }
+          "base_stat": 184
         },
         {
-          "base_stat": 34,
-          "effort": 0,
-          "stat": {
-            "name": "special-attack",
-            "url": "https://pokeapi.co/api/v2/stat/4/"
-          }
+          "base_stat": 34
         },
         {
-          "base_stat": 36,
-          "effort": 0,
-          "stat": {
-            "name": "special-defense",
-            "url": "https://pokeapi.co/api/v2/stat/5/"
-          }
+          "base_stat": 36
         },
         {
-          "base_stat": 38,
-          "effort": 0,
-          "stat": {
-            "name": "speed",
-            "url": "https://pokeapi.co/api/v2/stat/6/"
-          }
+          "base_stat": 38
         }
       ],
       "id": 1148
@@ -85364,12 +85299,12 @@
       "imagen": "https://wallpapercave.com/wp/wp9563909.png",
       "type": "steel",
       "sectype": null,
-      "weight": "150",
-      "height": "3",
+      "weight": 8.8,
+      "height": 0.09,
       "pokedescripcion": "Prueba de campo descripcion",
       "abilitiesdes": [
         {
-          "effect": "Prueba Campo Habilidad",
+          "effect": "Test first ability field",
           "name": "Crimson Mode"
         }
       ],
@@ -85400,13 +85335,13 @@
       "img": "https://www.pngitem.com/pimgs/m/494-4948324_dark-souls-solaire-pixel-art-hd-png-download.png",
       "imagen": "https://i.pinimg.com/originals/21/89/67/2189679cd7afafb0d1988a9d0baa88d2.jpg",
       "type": "fire",
-      "sectype": null,
+      "sectype": "electric",
       "weight": "90",
-      "height": "1.8",
-      "pokedescripcion": "A great warrior",
+      "height": "2",
+      "pokedescripcion": "A great warrior.",
       "abilitiesdes": [
         {
-          "effect": "Let the sun guide you on your path",
+          "effect": "Let the sun guide you on your path.",
           "name": "Praise the sun"
         }
       ],
