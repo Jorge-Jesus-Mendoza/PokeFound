@@ -45,43 +45,45 @@ const Pokemon =()=>{
             <div className="container">
                 
 
-                <Button variant="outlined" color="primary" round onClick={()=>{Navigate(-1)}}>
-                    <ArrowBackIcon/>
-                </Button>
+                
 
                 {pokemon != null ?(
                     Title('PokeFound | ', pokemon.name),
-                    
-                        
-                    <div className="informacion">
+                    <>
+                        <Button variant="outlined" color="primary" round onClick={()=>{Navigate(-1)}}>
+                            <ArrowBackIcon/>
+                        </Button>
                             
-                        <Pokeinfo
-                            id={id}
-                            pokemon={pokemon}
-                            image={image}
-                            type={type}
-                            segtype={segtype}
-                            pokedescription={pokedescription}
-                            height={height}
-                            weight={weight}
-
-                        />
-
-                        <div className="stats fuente">
-                            <div className="centrado">
-
-                                <StatsL
-                                    stats={pokemon.stats}
-                                />
+                        <div className="informacion">
                                 
-                                <Skills
-                                    skills={abilitiesdes}
-                                />
+                            <Pokeinfo
+                                id={id}
+                                pokemon={pokemon}
+                                image={image}
+                                type={type}
+                                segtype={segtype}
+                                pokedescription={pokedescription}
+                                height={height}
+                                weight={weight}
 
+                            />
+
+                            <div className="stats fuente">
+                                <div className="centrado">
+
+                                    <StatsL
+                                        stats={pokemon.stats}
+                                    />
+                                    
+                                    <Skills
+                                        skills={abilitiesdes}
+                                    />
+
+                                </div>
                             </div>
+                            
                         </div>
-                        
-                    </div>
+                    </>
                         
                 ) : (<Loading/>)}
             </div>

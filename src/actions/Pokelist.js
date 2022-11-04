@@ -14,9 +14,6 @@ export const Pokelist = (url, trigger, filter) => async (dispatch, getState) =>{
         try{
 
             const list = await axios.get(url)
-            /* const test2 = await axios.get("http://localhost:5000/results?_start=0&_end=20&?type=dark")
-            console.log(test2.data.length) */
-
             const test = await axios.get(Count_pokemon)
             
             dispatch({
@@ -35,7 +32,6 @@ export const Pokelist = (url, trigger, filter) => async (dispatch, getState) =>{
         try{
 
             const list = await axios.get(`${Url}?type=${filter}`)
-            console.log(list.data)
             
 
             const test = await axios.get(Count_pokemon)

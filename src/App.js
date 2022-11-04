@@ -6,6 +6,7 @@ import { Buscar } from './pages/Search'
 import {New} from './pages/New'
 import { EditPokemon } from './pages/EditPokemon'
 import { ErrorServer } from './pages/505'
+import { PokemonList } from './pages/PokemonList'
 
 
 const App = () =>{
@@ -15,7 +16,8 @@ const App = () =>{
             <Routes>
                 <Route exact path="/home" element={<Home/>}/>
                 <Route exact path="/" element={<Home/>}/>
-                <Route exact path="/PokeFound" element={<Home/>}/>               
+                <Route exact path="/PokeFound" element={<Home/>}/> 
+                <Route exact path="/List" element={<PokemonList/>}/>               
                 <Route exact path="/pokemon/:name" element={<Pokemon/>}/>
                 <Route path="*" element={<Notfound/>}/>
                 <Route path="/notfound" element={<Notfound/>}/>             

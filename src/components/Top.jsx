@@ -31,6 +31,7 @@ export const Top = () => {
           <ul class="nav">
             
             <li  className='fuente ajuste'><Link to="/home">Pokedex</Link></li>
+            <li  className='fuente ajuste'><Link to="/List">Pokemon List</Link></li>
             <li  className='fuente ajuste'><Link to="/new">Add a Pokemon</Link></li>
             
           </ul>

@@ -609,6 +609,9 @@ table {
   display: flex;
   justify-content: flex-end;
 }
+.cursor{
+  cursor: pointer;
+}
 .filter-content{
   display: grid;
   grid-template-columns: auto auto;
