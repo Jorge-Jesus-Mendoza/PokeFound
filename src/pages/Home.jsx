@@ -293,7 +293,7 @@ const Home =()=>{
                                         <div className='centrado error505 my-10'>
 
                                             <div className='error'>
-                                            <img className='notfound' src="http://vignette1.wikia.nocookie.net/fantheories/images/c/ce/Artworks-000033957653-msh2uj-original.png/revision/latest?cb=20140619022320"></img>
+                                            <img className='notfound' src="http://vignette1.wikia.nocookie.net/fantheories/images/c/ce/Artworks-000033957653-msh2uj-original.png/revision/latest?cb=20140619022320" alt="No results"></img>
                                             
                                             </div>
 
