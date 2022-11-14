@@ -1,4 +1,5 @@
 import Default_setdata from "./Default_setdata"
+import Url from "../config/Url"
 
 const Asignador_data =( state = Default_setdata, action)=>{
     switch(action.type){
@@ -48,6 +49,22 @@ const Asignador_data =( state = Default_setdata, action)=>{
             
             ...state,
             type: action.payload
+            
+        }
+
+        case "SET_SECOND_TYPE_TO_FILTER_THE_LIST": return{
+            
+            ...state,
+            sectype: action.payload
+            
+        }
+
+        case "RESET_POKEDEX": return{
+            
+            ...state, 
+            url: `${Url}?_start=0&_limit=20`,
+            selected: 0,
+            filter: false
             
         }
 

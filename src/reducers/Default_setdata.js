@@ -7,6 +7,7 @@ const Default_setdata = {
     selected: 0,
     totalpokemon: null,
     type: null,
+    sectype: "",
     filter: false
 }
 export default Default_setdata

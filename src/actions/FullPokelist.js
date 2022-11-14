@@ -4,8 +4,14 @@ import Count_pokemon from "../config/Count_pokemon";
 
 export const FullPokelist = () => async (dispatch, getState) =>{
 
+
+
     dispatch({
         type: "LOADING_FULL_POKEMON_LIST",
+    });
+
+    dispatch({
+        type: "RESET_POKEDEX",
     });
 
     try{

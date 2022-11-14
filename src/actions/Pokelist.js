@@ -2,7 +2,7 @@ import axios from "axios";
 import Count_pokemon from "../config/Count_pokemon";
 import Url from "../config/Url";
 
-export const Pokelist = (url, trigger, filter) => async (dispatch, getState) =>{
+export const Pokelist = (url, trigger, filter, sectype) => async (dispatch, getState) =>{
 
     dispatch({
         type: "LOADING",
@@ -29,22 +29,38 @@ export const Pokelist = (url, trigger, filter) => async (dispatch, getState) =>{
 
     }else{
 
-        try{
+        if (sectype === "" || sectype === null){
 
-            const list = await axios.get(`${Url}?type=${filter}`)
-            
+            try{
+                const list = await axios.get(`${Url}?type=${filter}`)
+                const test = await axios.get(Count_pokemon)
 
-            const test = await axios.get(Count_pokemon)
-            
-            dispatch({
-                type: "LOAD_DATA",
-                payload: list.data,
-                payload2: test.data.total,
-            });
+                dispatch({
+                    type: "LOAD_DATA",
+                    payload: list.data,
+                    payload2: test.data.total,
+                });
+                
+            } catch(error){
+                console.log(error)
+                window.location.assign("/ErrorServer");
+            }
+        }else{
 
-        } catch(error){
-            console.log(error)
-            window.location.assign("/ErrorServer");
+            try{
+                const list = await axios.get(`${Url}?type=${filter}&sectype=${sectype}`)
+                const test = await axios.get(Count_pokemon)
+                
+                dispatch({
+                    type: "LOAD_DATA",
+                    payload: list.data,
+                    payload2: test.data.total,
+                });
+
+            } catch(error){
+                console.log(error)
+                window.location.assign("/ErrorServer");
+            }
         }
 
     }

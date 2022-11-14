@@ -55,6 +55,22 @@ export const New = () => {
             
         }
 
+        const handleChange2 = (value) => {
+            setData({
+                ...data,
+                type: value
+            })
+            
+        }
+
+        const handleChange3 = (value) => {
+            setData({
+                ...data,
+                s_type: value
+            })
+            
+        }
+
         
 
         const handleSubmit = (e)=>{
@@ -124,6 +140,8 @@ export const New = () => {
                         <Form2
                             handleSubmit={handleSubmit}
                             handleChange={handleChange}
+                            handleChange2={handleChange2}
+                            handleChange3={handleChange3}
                             data={data}     
                             info={info}                   
                         />

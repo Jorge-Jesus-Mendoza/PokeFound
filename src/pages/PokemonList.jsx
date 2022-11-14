@@ -1,7 +1,7 @@
 import React from 'react'
 import { Top } from '../components/Top'
 import { Footer } from '../components/Footer'
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridRowsProp, GridColDef, GridToolbar  } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -18,6 +18,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { Deletelist } from '../actions/Deletelist';
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
+import Box from '@mui/material/Box';
 
 
 export const PokemonList = () => {
@@ -71,8 +72,25 @@ export const PokemonList = () => {
     let columns= [
       { field: 'id', headerName: 'id', flex: 1, align:'center', headerAlign: 'center' },
       { field: 'Name', headerName: 'Name', flex: 1, align:'center', headerAlign: 'center'},
-      { field: 'Type', headerName: 'Type', flex: 1, align:'center', headerAlign: 'center' },
-      { field: 'Type2', headerName: 'Second type', flex: 1, align:'center', headerAlign: 'center' },
+      { field: 'Type', headerName: 'Type', flex: 1, align:'center', headerAlign: 'center',
+    
+      renderCell: (cellValues) =>{
+        return(
+          <div className={`${cellValues.row.Type} cell`}>
+            <p className=' my-1'><b>{cellValues.row.Type}</b></p>
+          </div>
+        )
+      }},
+      { field: 'Type2', headerName: 'Second type', flex: 1, align:'center', headerAlign: 'center',
+
+      renderCell: (cellValues) =>{
+        return(
+          <div className={`${cellValues.row.Type2} cell`}>
+            <p className=' my-1'><b>{cellValues.row.Type2}</b></p>
+          </div>
+        )
+      }},
+
       {field: 'Actions', headerName: 'Actions', flex: 1, align:'center', headerAlign: 'center', filterable: false, sortable: false,
 
       renderCell: (cellValues) =>{
@@ -85,6 +103,7 @@ export const PokemonList = () => {
                 <MenuItem onClick={()=> navigate(`/edit/${cellValues.row.id}`)}>Edit</MenuItem>
                 <MenuItem onClick={()=> handledelete(list,cellValues.row.id,handleClick)}>Delete</MenuItem>
             </Menu>
+            
 
           </>
           
@@ -127,6 +146,9 @@ export const PokemonList = () => {
                   <h5>Full list of Pokemon</h5>
                 </div>
 
+
+                
+
                 <DataGrid rows={rows} columns={columns} className="my-3" autoHeight={true}
                   initialState={{
                     pagination: {
@@ -135,13 +157,8 @@ export const PokemonList = () => {
                   }}
                   rowsPerPageOptions={[5, 10, 20]}
                   disableSelectionOnClick={true}
-
-                
-                  
-                
+                  components={{ Toolbar: GridToolbar }}
                 />
-                
-
                 
               </>
             ) : (

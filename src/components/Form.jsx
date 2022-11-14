@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import InputLabel from '@mui/material/InputLabel'
 import { useDispatch } from 'react-redux';
+import Autocomplete from '@mui/material/Autocomplete';
 
 import { SetDesc, SetName, SetType, SetSegtype, SetHeight, SetWeight, Setartwork, Setpreview, SetFirstName, SetFirstDesc, SetSecondName, SetSecondDesc, SetHiddendName, SetHiddenDesc, SetHP, SetAttack, SetDefense, SetSpecialAttack, SetSpecialDefense, SetSpeed } from '../actions/Handlechange';
 
@@ -16,6 +17,7 @@ export const Form = ({handleSubmit, handleChange,pokedescription,abilitiesdes,he
 
   
   const dispatch = useDispatch()
+  const types = ["grass","poison","water","fire","bug","normal","electric","ground","fighting","psychic","rock","ghost","ice","dragon","dark","steel","flying","fairy"]
   return (
     <form onSubmit={handleSubmit}>
         
@@ -29,72 +31,36 @@ export const Form = ({handleSubmit, handleChange,pokedescription,abilitiesdes,he
 
                 <FormControl className='my-2' fullWidth>
                     
-                    <InputLabel variant='standard' id="type">Type</InputLabel>
-                    <Select
-                        labelId="type"
-                        id="type"
-                        name="type"
-                        // value={age}
-                        label="Type"
-                        onChange={(event)=> dispatch(SetType(event.target.value))} 
-                        variant='standard'
-                        
-                    >
-                        
-                        <MenuItem value="grass">grass</MenuItem>
-                        <MenuItem value="poison">poison</MenuItem>
-                        <MenuItem value="water">water</MenuItem>
-                        <MenuItem value="fire">fire</MenuItem>
-                        <MenuItem value="bug">bug</MenuItem>
-                        <MenuItem value="normal">normal</MenuItem>
-                        <MenuItem value="electric">electric</MenuItem>
-                        <MenuItem value="ground">ground</MenuItem>
-                        <MenuItem value="fighting">fighting</MenuItem>
-                        <MenuItem value="psychic">psychic</MenuItem>
-                        <MenuItem value="rock">rock</MenuItem>
-                        <MenuItem value="ghost">ghost</MenuItem>
-                        <MenuItem value="ice">ice</MenuItem>
-                        <MenuItem value="dragon">dragon</MenuItem>
-                        <MenuItem value="dark">dark</MenuItem>
-                        <MenuItem value="steel">steel</MenuItem>
-                        <MenuItem value="flying">flying</MenuItem>
-                        <MenuItem value="fairy">fairy</MenuItem>
-                    </Select>
+                    
+
+                    <Autocomplete
+                      disablePortal
+                      id="type"
+                      name="type"
+                      options={types}
+                      sx={{ width: 350 }}
+                      disableClearable
+                      onChange={(event, value)=> dispatch(SetType(value))}
+                      renderInput={(params) => <TextField {...params} label="First Type" variant='standard'
+                      />}
+                    />
+
+
                 </FormControl>
                 
 
                 <FormControl className='my-2' fullWidth>
                     
-                    <InputLabel variant='standard' id="s_type">Second Type</InputLabel>
-                    <Select
-                        labelId="s_type"
-                        id="s_type"
-                        name="s_type"
-                        // value={age}
-                        label="Second Type"
-                        onChange={(event)=> dispatch(SetSegtype(event.target.value))} 
-                        variant='standard'
-                    >
-                        <MenuItem value="">Disable Second type</MenuItem>
-                        <MenuItem value="grass">grass</MenuItem>
-                        <MenuItem value="poison">poison</MenuItem>
-                        <MenuItem value="water">water</MenuItem>
-                        <MenuItem value="fire">fire</MenuItem>
-                        <MenuItem value="bug">bug</MenuItem>
-                        <MenuItem value="normal">normal</MenuItem>
-                        <MenuItem value="electric">electric</MenuItem>
-                        <MenuItem value="ground">ground</MenuItem>
-                        <MenuItem value="fighting">fighting</MenuItem>
-                        <MenuItem value="psychic">psychic</MenuItem>
-                        <MenuItem value="rock">rock</MenuItem>
-                        <MenuItem value="ghost">ghost</MenuItem>
-                        <MenuItem value="ice">ice</MenuItem>
-                        <MenuItem value="dragon">dragon</MenuItem>
-                        <MenuItem value="dark">dark</MenuItem>
-                        <MenuItem value="steel">steel</MenuItem>
-                        <MenuItem value="flying">flying</MenuItem>
-                        <MenuItem value="fairy">fairy</MenuItem>
-                    </Select>
+                    <Autocomplete
+                      disablePortal
+                      id="s_type"
+                      name="s_type"
+                      options={types}
+                      sx={{ width: 350 }}
+                      onChange={(event, value)=> dispatch(SetSegtype(value))}
+                      renderInput={(params) => <TextField {...params} label="Second Type" variant='standard'
+                      />}
+                    />
                 </FormControl>
 
                 <FormControl className='my-2' fullWidth>                 
@@ -453,3 +419,7 @@ export const Form = ({handleSubmit, handleChange,pokedescription,abilitiesdes,he
     </form>
   )
 }
+
+
+
+
