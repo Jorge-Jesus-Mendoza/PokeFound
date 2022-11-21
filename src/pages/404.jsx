@@ -6,10 +6,6 @@ import { withRouter } from '../components/Withrouter'
 
 class Notfound extends React.Component{
   
-  componentDidMount() {
-
-    console.log("Prop: ",this.props.params.id)
-  }
   render(){
       return(
         <div>
@@ -24,8 +20,6 @@ class Notfound extends React.Component{
               <div className='error fuente'>
                 <h1>Error 404 Content not found</h1>
               </div>
-
-              <button onClick={()=> this.props.navigation(-1)}>click</button>
     
             </div>
           <Footer/>
