@@ -14,7 +14,7 @@ class Card extends React.Component{
 
                     <div className="id"><p >#{id}</p></div>
                     <div >
-                        <img className="img otra-img" src={image}></img>
+                        <img className="img otra-img" src={image} alt=""></img>
                     </div>
 
                     {name.length < 13 ? (
