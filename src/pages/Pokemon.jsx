@@ -1,12 +1,8 @@
-import React, {useEffect} from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import { Title } from "../components/Functions";
-import { Top } from "../components/Top";
-import { Footer } from "../components/Footer";
+import Top from "../components/Top";
+import  Footer  from "../components/Footer";
 import { Loading } from "../components/Loading";
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from "react-redux/es/exports";
-import { useDispatch } from "react-redux/es/exports";
 import { Pokedata } from "../actions/Pokedata";
 import { StatsL } from "../components/StatsL";
 import { Skills } from "../components/Skills";
@@ -14,82 +10,73 @@ import { Pokeinfo } from "../components/Pokeinfo";
 import Button from '@mui/material/Button'
 import Url from "../config/Url"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { withRouter } from '../components/Withrouter'
+import {connect} from 'react-redux';
 
-const Pokemon =()=>{
-    
-    const params = useParams()
+class Pokemon extends React.Component{
 
-    const pokemon = useSelector(Store => Store.PerfilReducer.pokemon)
-    const image = useSelector(Store => Store.PerfilReducer.image)
-    const segtype = useSelector(Store => Store.PerfilReducer.segtype)
-    const type = useSelector(Store => Store.PerfilReducer.type)
-    const pokedescription = useSelector(Store => Store.PerfilReducer.pokedescription)
-    const abilitiesdes = useSelector(Store => Store.PerfilReducer.abilitiesdes)
-    const id = useSelector(Store => Store.PerfilReducer.id)
-    const weight = useSelector(Store => Store.PerfilReducer.weight)
-    const height = useSelector(Store => Store.PerfilReducer.height)
-
-    const Navigate = useNavigate()
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        dispatch(Pokedata(`${Url}?name=${params.name}`));
-        window.scrollTo(0, 0)
-    },[params.name])
-
-    return (
+    componentDidMount() {
         
-        <div >
-            
-            <Top/>
-            <div className="container">
-                
-
-                
-
-                {pokemon != null ?(
-                    Title('PokeFound | ', pokemon.name),
-                    <>
-                        <Button variant="outlined" color="primary" round onClick={()=>{Navigate(-1)}}>
-                            <ArrowBackIcon/>
-                        </Button>
-                            
-                        <div className="informacion">
+        this.props.Pokedata(`${Url}?name=${this.props.params.name}`);
+        window.scrollTo(0, 0);
+    }
+    render(){
+        return(
+            <div >
+                <Top/>
+                <div className="container">
+                    {this.props.data.pokemon != null ?(
+                        Title('PokeFound | ', this.props.data.pokemon.name),
+                        <>
+                            <Button variant="outlined" color="primary" round onClick={()=>{this.props.navigation(-1)}}>
+                                <ArrowBackIcon/>
+                            </Button>
                                 
-                            <Pokeinfo
-                                id={id}
-                                pokemon={pokemon}
-                                image={image}
-                                type={type}
-                                segtype={segtype}
-                                pokedescription={pokedescription}
-                                height={height}
-                                weight={weight}
-
-                            />
-
-                            <div className="stats fuente">
-                                <div className="centrado">
-
-                                    <StatsL
-                                        stats={pokemon.stats}
-                                    />
+                            <div className="informacion">
                                     
-                                    <Skills
-                                        skills={abilitiesdes}
-                                    />
+                                <Pokeinfo
+                                    id={this.props.data.id}
+                                    pokemon={this.props.data.pokemon}
+                                    image={this.props.data.image}
+                                    type={this.props.data.type}
+                                    segtype={this.props.data.segtype}
+                                    pokedescription={this.props.data.pokedescription}
+                                    height={this.props.data.height}
+                                    weight={this.props.data.weight}
 
+                                />
+
+                                <div className="stats fuente">
+                                    <div className="centrado">
+
+                                        <StatsL
+                                            stats={this.props.data.pokemon.stats}
+                                        />
+                                        
+                                        <Skills
+                                            skills={this.props.data.abilitiesdes}
+                                        />
+
+                                    </div>
                                 </div>
+                                
                             </div>
+                        </>
                             
-                        </div>
-                    </>
-                        
-                ) : (<Loading/>)}
+                    ) : (<Loading/>)}
+                </div>
+                <Footer/>
             </div>
-            <Footer/>
-        </div>
-        
-    )
+        )
+    }
 }
-export default Pokemon
+
+const mapStatetopProps =(state)=>{
+    return{
+        data: state.PerfilReducer
+    }
+}
+
+const mapDispatchtopProps = {Pokedata}
+
+export default connect(mapStatetopProps, mapDispatchtopProps)(withRouter(Pokemon)) 

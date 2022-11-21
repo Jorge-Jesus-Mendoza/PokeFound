@@ -1,174 +1,185 @@
 import React from 'react'
-import { Top } from '../components/Top'
-import { Footer } from '../components/Footer'
-import { DataGrid, GridRowsProp, GridColDef, GridToolbar  } from '@mui/x-data-grid';
+import Top from '../components/Top'
+import  Footer  from '../components/Footer'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { FullPokelist } from '../actions/FullPokelist';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux/es/exports';
 import { Loading } from '../components/Loading';
 import { MainTitle } from "../components/Functions";
-import { useState } from 'react';
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Deletelist } from '../actions/Deletelist';
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
-import Box from '@mui/material/Box';
+import { withRouter } from '../components/Withrouter'
+import {connect} from 'react-redux';
+import update from 'react-addons-update';
 
+class PokemonList extends React.Component{
 
-export const PokemonList = () => {
-    const navigate = useNavigate()
-    const list = useSelector(Store => Store.PokemonListReducer.list)
-    const [anchorEL, setAnchor]= useState([])
+  state={
+    anchorEL: [],
+    open: false
+  }
 
-    const [open, setOpen] = useState(false);
+  handleClick = () => {
+    this.setState({
+        open: true
+      })
+  };
 
-    const handleClick = () => {
-      setOpen(true);
-    };
+  handleClose = (event, reason) => {
+      this.setState({
+        open: false
+      })
+  };
+  
+  handleopen = (id, event)=>{
+    this.setState(update(this.state, {
+      anchorEL: {
+        [id]: {
+          $set: event.currentTarget
+        }
+      }
+    }));
+  }
 
-    const handleClose = (event, reason) => {
-        setOpen(false);
-    };
-    
-    const dispatch = useDispatch()
+  handleclose = (id, event)=>{
+    this.setState(update(this.state, {
+      anchorEL: {
+        [id]: {
+          $set: null
+        }
+      }
+    }));
+  }
 
-    const handleopen = (id, event)=>{
-      setAnchor(anchor =>({
-        ...anchor,
-        [id]: event.currentTarget
+  handledelete = (pokelist, id,handleClick) =>{
 
-      }))
-    }
+    this.props.Deletelist(pokelist, id,handleClick)
 
-    const handleclose = (id, event)=>{
-      setAnchor(anchor =>({
-        ...anchor,
-        [id]: null
+  }
 
-      }))
-    }
-    const handledelete = (pokelist, id,handleClick) =>{
+  componentDidMount() {
+        
+    this.props.FullPokelist();
+    MainTitle();
+    window.scrollTo(0, 0)
+  }
 
-      dispatch(Deletelist(pokelist, id,handleClick))
-
-    }
-
-    useEffect(()=>{
+  render(){
+      let rows= null;
+      let columns= [
+        { field: 'id', headerName: 'id', flex: 1, align:'center', headerAlign: 'center' },
+        { field: 'Name', headerName: 'Name', flex: 1, align:'center', headerAlign: 'center'},
+        { field: 'Type', headerName: 'Type', flex: 1, align:'center', headerAlign: 'center',
       
-      dispatch(FullPokelist());
-      MainTitle();
-      window.scrollTo(0, 0)
-        
-    },[])
-
-    let rows= null;
+        renderCell: (cellValues) =>{
+          return(
+            <div className={`${cellValues.row.Type} cell`}>
+              <p className=' my-1'><b>{cellValues.row.Type}</b></p>
+            </div>
+          )
+        }},
+        { field: 'Type2', headerName: 'Second type', flex: 1, align:'center', headerAlign: 'center',
+  
+        renderCell: (cellValues) =>{
+          return(
+            <div className={`${cellValues.row.Type2} cell`}>
+              <p className=' my-1'><b>{cellValues.row.Type2}</b></p>
+            </div>
+          )
+        }},
+  
+        {field: 'Actions', headerName: 'Actions', flex: 1, align:'center', headerAlign: 'center', filterable: false, sortable: false,
+  
+          renderCell: (cellValues) =>{
+            
+            return (
+              <>
+                <ArrowDropDownIcon id={`menu${cellValues.row.id}`} className="cursor" onClick={(e)=>{this.handleopen(cellValues.row.id, e)}}/>
+                <Menu id={`menu${cellValues.row.id}`} anchorEl={this.state.anchorEL[cellValues.row.id]} keepMounted open={Boolean(this.state.anchorEL[cellValues.row.id])} onClose={(e)=>(this.handleclose(cellValues.row.id,e))}>
+                    <MenuItem onClick={()=> this.props.navigation(`/pokemon/${cellValues.row.Name}`)}>Show</MenuItem>
+                    <MenuItem onClick={()=> this.props.navigation(`/edit/${cellValues.row.id}`)}>Edit</MenuItem>
+                    <MenuItem onClick={()=> this.handledelete(this.props.list,cellValues.row.id, this.handleClick)}>Delete</MenuItem>
+                </Menu>
+                
     
-    let columns= [
-      { field: 'id', headerName: 'id', flex: 1, align:'center', headerAlign: 'center' },
-      { field: 'Name', headerName: 'Name', flex: 1, align:'center', headerAlign: 'center'},
-      { field: 'Type', headerName: 'Type', flex: 1, align:'center', headerAlign: 'center',
-    
-      renderCell: (cellValues) =>{
-        return(
-          <div className={`${cellValues.row.Type} cell`}>
-            <p className=' my-1'><b>{cellValues.row.Type}</b></p>
-          </div>
-        )
-      }},
-      { field: 'Type2', headerName: 'Second type', flex: 1, align:'center', headerAlign: 'center',
+              </>
+              
+            )
+          }
+        },
+      ];
 
-      renderCell: (cellValues) =>{
-        return(
-          <div className={`${cellValues.row.Type2} cell`}>
-            <p className=' my-1'><b>{cellValues.row.Type2}</b></p>
-          </div>
-        )
-      }},
+      const fulllist = ()=>{
+        rows= this.props.list.map( pokemon =>(
+            {id: pokemon.id, Name: pokemon.name, Type: pokemon.type, Type2: pokemon.sectype}
+          ))
+      }
+      return(
+        <>
+          <Top/>
+          <div className='container'>
 
-      {field: 'Actions', headerName: 'Actions', flex: 1, align:'center', headerAlign: 'center', filterable: false, sortable: false,
-
-      renderCell: (cellValues) =>{
-        
-        return (
-          <>
-            <ArrowDropDownIcon id={`menu${cellValues.row.id}`} className="cursor" onClick={(e)=>{handleopen(cellValues.row.id, e)}}/>
-            <Menu id={`menu${cellValues.row.id}`} anchorEl={anchorEL[cellValues.row.id]} keepMounted open={Boolean(anchorEL[cellValues.row.id])} onClose={(e)=>(handleclose(cellValues.row.id,e))}>
-                <MenuItem onClick={()=> navigate(`/pokemon/${cellValues.row.Name}`)}>Show</MenuItem>
-                <MenuItem onClick={()=> navigate(`/edit/${cellValues.row.id}`)}>Edit</MenuItem>
-                <MenuItem onClick={()=> handledelete(list,cellValues.row.id,handleClick)}>Delete</MenuItem>
-            </Menu>
             
 
-          </>
-          
-        )
-      }
-    
-    
-    },
-    ];
-
-    const fulllist = ()=>{
-      rows= list.map( pokemon =>(
-          {id: pokemon.id, Name: pokemon.name, Type: pokemon.type, Type2: pokemon.sectype}
-        ))
-    }
-  return (
-    <>
-        <Top/>
-        <div className='container'>
-
-          
-
-            {list != null ? (
-              fulllist(),
-              
-              <>
-                <Button variant="outlined" color="primary" onClick={()=>{navigate(-1)}}>
-                    <ArrowBackIcon/>
-                </Button>
+              {this.props.list != null ? (
+                fulllist(),
                 
+                <>
+                  <Button variant="outlined" color="primary" onClick={()=>{this.props.navigation(-1)}}>
+                      <ArrowBackIcon/>
+                  </Button>
+                  
 
-                
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }} variant="filled">
-                        The pokemon has been successfully deleted!
-                    </Alert>
-                </Snackbar>
+                  
+                  <Snackbar open={this.state.open} autoHideDuration={6000} onClose={this.handleClose}>
+                      <Alert onClose={this.handleClose} severity="success" sx={{ width: '100%' }} variant="filled">
+                          The pokemon has been successfully deleted!
+                      </Alert>
+                  </Snackbar>
 
-                <div className='text-center my5'>
-                  <h5>Full list of Pokemon</h5>
-                </div>
+                  <div className='text-center my5'>
+                    <h5>Full list of Pokemon</h5>
+                  </div>
 
 
-                
+                  
 
-                <DataGrid rows={rows} columns={columns} className="my-3" autoHeight={true}
-                  initialState={{
-                    pagination: {
-                      pageSize: 10,
-                    },
-                  }}
-                  rowsPerPageOptions={[5, 10, 20]}
-                  disableSelectionOnClick={true}
-                  components={{ Toolbar: GridToolbar }}
-                />
-                
-              </>
-            ) : (
-              <Loading/>
-            )}
+                  <DataGrid rows={rows} columns={columns} className="my-3" autoHeight={true}
+                    initialState={{
+                      pagination: {
+                        pageSize: 10,
+                      },
+                    }}
+                    rowsPerPageOptions={[5, 10, 20]}
+                    disableSelectionOnClick={true}
+                    components={{ Toolbar: GridToolbar }}
+                  />
+                  
+                </>
+              ) : (
+                <Loading/>
+              )}
 
-        </div>
-        <Footer/>
-    
-    
-    </>
-  )
+          </div>
+          <Footer/>
+        </>
+      )
+  }
 }
+
+const mapDispatchtopProps ={ FullPokelist, Deletelist }
+
+
+const mapStatetopProps =(state)=>{
+    return{
+        list: state.PokemonListReducer.list
+    }
+  }
+
+export default connect(mapStatetopProps, mapDispatchtopProps)(withRouter(PokemonList)) 
+

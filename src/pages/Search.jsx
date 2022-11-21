@@ -1,54 +1,75 @@
 import React from 'react'
-import { useEffect } from 'react';
-import { Top } from '../components/Top';
-import { Footer } from '../components/Footer';
-import { useParams } from "react-router-dom";
+import Top from '../components/Top';
+import  Footer  from '../components/Footer';
 import { Results } from '../components/Results';
 import { Loading } from '../components/Loading';
 import { Title } from '../components/Functions';
 import { Pokesearch } from '../actions/Pokesearch';
-import { useDispatch } from "react-redux/es/exports";
-import { useSelector } from "react-redux/es/exports";
+import {connect} from 'react-redux';
+import { withRouter } from '../components/Withrouter'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from '@mui/material/Button';
 
 
 
+class Buscar extends React.Component{
 
-export const Buscar = () => {
+  componentDidMount() {
 
-    const results = useSelector(Store => Store.SearchReducer.results)
-    const dispatch = useDispatch()
-    
-    const params = useParams()
+    Title('Search | ', this.props.params.search);
+    window.scrollTo(0, 0);
+    this.props.Pokesearch(this.props.params.search);
 
+  }
 
-    useEffect(()=>{
-        dispatch(Pokesearch(params.search));
-        window.scrollTo(0, 0)
-    },[params.search])
-
-    Title('Search | ', params.search)
-  return (
-
-    <div>
-      <Top/>
-      <div className='container'>
-        {results != null ? (
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.params.search !== this.props.params.search) {
+      window.scrollTo(0, 0);
+      this.props.Pokesearch(this.props.params.search);
+    }
+  }
+  render(){
+      return(
+        <div>
+          <Top/>
           
-          results.map(pokemon =>(
-            <Results
-              key={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.img}
-              type={pokemon.type}
-            />
-          ))
+          <div className='container'>
+
+            <Button variant="outlined" color="primary" onClick={()=>{this.props.navigation(-1)}}>
+              <ArrowBackIcon/>
+            </Button>
+
+            {this.props.results != null ? (
+
+              
+              
+              this.props.results.map(pokemon =>(
+                <Results
+                  key={pokemon.id}
+                  name={pokemon.name}
+                  image={pokemon.img}
+                  type={pokemon.type}
+                />
+              ))
+              
+            ):(<Loading/>)}
+            
+          </div>
           
-        ):(<Loading/>)}
-        
-      </div>
-      
-      <Footer/>
-      
-    </div>
-  )
+          <Footer/>
+          
+        </div>
+      )
+  }
 }
+
+const mapDispatchtopProps ={ Pokesearch }
+
+
+const mapStatetopProps =(state)=>{
+    return{
+        results: state.SearchReducer.results
+    }
+  }
+
+export default connect(mapStatetopProps, mapDispatchtopProps)(withRouter(Buscar)) 

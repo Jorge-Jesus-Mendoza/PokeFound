@@ -2,9 +2,11 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import "./styles/Card.css"
 
-const Card = ({name,image, type, sectype, id, weight, height}) =>{
-    return (
-
+class Card extends React.Component{
+    render(){
+        const {name,image, type, sectype, id, weight, height}=this.props
+    
+        return(
         <div>
             
             <div className={`card ${type}`}>
@@ -57,7 +59,8 @@ const Card = ({name,image, type, sectype, id, weight, height}) =>{
                 
             </div>
         </div>
-
-    )
+        )
+    }
 }
+
 export default Card
